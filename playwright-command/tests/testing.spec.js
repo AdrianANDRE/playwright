@@ -1,7 +1,6 @@
 const{test, expect} = require('@playwright/test');
 const toolbox = require('../tools/toolbox.js');
 const fs = require('fs');
-const papa = require('papaparse');
 const hooks = require('../tests/hooks.spec.js');
 
 
@@ -21,13 +20,6 @@ test('FAILED: Run script and break', async () => {
     await toolbox.runPythonScriptAndGetOutput('--stats --state-filter Califoria')
     console.log("Output from Python script: ", toolbox.readCsvExtractData('extracted.csv'));
 })
-
-test('SUCCESS: Run python script and parse result', async () => {
-    await toolbox.runPythonScriptAndGetOutput('--stats --state-filter California')
-    console.log("Output from Python script: ", toolbox.readCsvExtractData('extracted.csv'));
-    await console.log('papa parse : ',papa.parse('extracted.csv'))
-})
-
 
  test('FAILED : The state of California need to have at least 40% of Bachelors Degree', async () => {
     await toolbox.runPythonScriptAndGetOutput(' --stats --state-filter California')
